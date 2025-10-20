@@ -1,2 +1,14 @@
 [build]
-    functions = "functions"
+  functions = "netlify/functions"
+  command = "npm run build"
+  publish = "dist"
+
+[dev]
+  functions = "netlify/functions"
+  command = "npm run dev"
+  port = 8888
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/app/:splat"
+  status = 200
