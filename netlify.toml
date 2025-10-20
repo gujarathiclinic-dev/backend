@@ -1,13 +1,21 @@
 [build]
-  functions = "netlify/functions"
   command = "npm install"
-
-[dev]
   functions = "netlify/functions"
-  command = "npm run dev"
-  port = 8888
+  publish = "."
 
+# Redirect API routes to the serverless function
 [[redirects]]
   from = "/api/*"
   to = "/.netlify/functions/app/:splat"
+  status = 200
+
+# Razorpay routes
+[[redirects]]
+  from = "/order"
+  to = "/.netlify/functions/app"
+  status = 200
+
+[[redirects]]
+  from = "/order/validate"
+  to = "/.netlify/functions/app"
   status = 200
